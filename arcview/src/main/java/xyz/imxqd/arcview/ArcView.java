@@ -22,6 +22,7 @@ public class ArcView extends View {
     RectF contentRect;
     int startColor, endColor;
     float startAngle, sweepAngle;
+    float strokeWidth;
 
     public ArcView(Context context) {
         super(context);
@@ -63,7 +64,8 @@ public class ArcView extends View {
             } else {
                 paint.setStrokeCap(Paint.Cap.SQUARE);
             }
-            paint.setStrokeWidth(ta.getDimensionPixelSize(R.styleable.ArcView_stroke_width, 10 * 3));
+            strokeWidth = ta.getDimensionPixelSize(R.styleable.ArcView_stroke_width, 10 * 3);
+            paint.setStrokeWidth(strokeWidth);
             startAngle = ta.getFloat(R.styleable.ArcView_start_angle, 270);
             sweepAngle = ta.getFloat(R.styleable.ArcView_sweep_angle, 270);
             startColor = ta.getColor(R.styleable.ArcView_stroke_color_start, Color.parseColor("#0018B0F2"));
@@ -79,6 +81,7 @@ public class ArcView extends View {
     }
 
     public void setStrokeWidth(float width) {
+        this.strokeWidth = width;
         paint.setStrokeWidth(width);
     }
 
@@ -131,7 +134,10 @@ public class ArcView extends View {
         int paddingTop = getPaddingTop();
         int paddingBottom = getPaddingBottom();
         if (contentRect == null) {
-            contentRect = new RectF(paddingLeft, paddingTop, width - paddingLeft - paddingRight, height - paddingTop - paddingBottom);
+            contentRect = new RectF(paddingLeft + strokeWidth * 0.5f,
+                    paddingTop  + strokeWidth * 0.5f,
+                    width - paddingLeft - strokeWidth * 0.5f,
+                    height - paddingTop - strokeWidth * 0.5f);
         }
         Shader gradient = new SweepGradient (contentRect.centerX(), contentRect.centerY(),
                 new int[] {startColor, endColor, startColor}, new float[]{0f, sweepAngle / 360f, 1f});

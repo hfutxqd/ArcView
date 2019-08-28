@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ArcView">
+        <attr name="cap" format="enum" >
+            <enum name="butt" value="0" />
+            <enum name="round" value="1" />
+            <enum name="square" value="2" />
+        </attr>
+        <attr name="stroke_width" format="dimension"/>
+        <attr name="stroke_color" format="color"/>
+        <attr name="stroke_color_start" format="color"/>
+        <attr name="stroke_color_end" format="color"/>
+        <attr name="start_angle" format="float" />
+        <attr name="sweep_angle" format="float" />
+    </declare-styleable>
+</resources>

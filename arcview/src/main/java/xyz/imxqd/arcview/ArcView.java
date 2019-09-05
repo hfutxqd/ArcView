@@ -139,12 +139,21 @@ public class ArcView extends View {
                     width - paddingLeft - strokeWidth * 0.5f,
                     height - paddingTop - strokeWidth * 0.5f);
         }
-        Shader gradient = new SweepGradient (contentRect.centerX(), contentRect.centerY(),
-                new int[] {startColor, endColor, startColor}, new float[]{0f, sweepAngle / 360f, 1f});
-        Matrix gradientMatrix = new Matrix();
-        gradientMatrix.preRotate(startAngle, contentRect.centerX(), contentRect.centerY());
-        gradient.setLocalMatrix(gradientMatrix);
-        paint.setShader(gradient);
+        if (sweepAngle >= 0) {
+            Shader gradient = new SweepGradient (contentRect.centerX(), contentRect.centerY(),
+                    new int[] {startColor, endColor, startColor}, new float[]{0f, sweepAngle / 360f, 1f});
+            Matrix gradientMatrix = new Matrix();
+            gradientMatrix.preRotate(startAngle, contentRect.centerX(), contentRect.centerY());
+            gradient.setLocalMatrix(gradientMatrix);
+            paint.setShader(gradient);
+        } else {
+            Shader gradient = new SweepGradient (contentRect.centerX(), contentRect.centerY(),
+                    new int[] {endColor, startColor, endColor}, new float[]{0f, sweepAngle / -360f, 1f});
+            Matrix gradientMatrix = new Matrix();
+            gradientMatrix.preRotate(startAngle + sweepAngle, contentRect.centerX(), contentRect.centerY());
+            gradient.setLocalMatrix(gradientMatrix);
+            paint.setShader(gradient);
+        }
 
         canvas.drawArc(contentRect, startAngle, sweepAngle, false, paint);
     }

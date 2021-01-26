@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             public void onAnimationEnd(Animator animation) {
                 float s1 = arcView.getSweepAngle();
                 ValueAnimator animator = ObjectAnimator.ofFloat(s1, 360f);
-                animator.setDuration(500);
+                animator.setDuration(800);
                 animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public void onAnimationUpdate(ValueAnimator animation) {
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 animator.start();
 
                 ValueAnimator animator2 = ObjectAnimator.ofArgb(arcView.getStartColor(), arcView.getEndColor());
-                animator2.setDuration(500);
+                animator2.setDuration(800);
                 animator2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public void onAnimationUpdate(ValueAnimator animation) {

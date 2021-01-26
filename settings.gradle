@@ -1,2 +1,2 @@
 include ':app', ':arcview'
-rootProject.name='ArcViewDemo'
+rootProject.name='ArcView'

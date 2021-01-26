@@ -1,5 +1,6 @@
 package xyz.imxqd.arcview;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -9,12 +10,8 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.SweepGradient;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
-
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 
 public class ArcView extends View {
 
@@ -29,23 +26,23 @@ public class ArcView extends View {
         init(null);
     }
 
-    public ArcView(Context context, @Nullable AttributeSet attrs) {
+    public ArcView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(attrs);
     }
 
-    public ArcView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public ArcView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(attrs);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public ArcView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    @SuppressLint("NewApi")
+    public ArcView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(attrs);
     }
 
-    private void init(@Nullable AttributeSet attrs) {
+    private void init(AttributeSet attrs) {
         paint = new Paint();
         paint.setAntiAlias(true);
         paint.setStrokeCap(Paint.Cap.ROUND);
